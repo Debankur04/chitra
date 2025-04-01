@@ -6,7 +6,7 @@ import { AppContext } from '../context/AppContext'
 
 const Navbar = () => {
 
-  const {user} = useContext(AppContext)
+  const {user,setuser} = useContext(AppContext)
   return (
     <div className='flex justify-between items-center py-4'>
         <Link href="/"><Image
@@ -41,7 +41,7 @@ const Navbar = () => {
                 />
                 <div className='absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded-xl pt-12'>
                   <ul className='list-none m-0 p-2 bg-white rounded-md border text-sm'>
-                    <li className='py-1 px-2 cursor-pointer pr-10'>Logout</li>
+                    <li className='py-1 px-2 cursor-pointer pr-10' onClick={()=>setuser(false)}>Logout</li>
                   </ul>
                 </div>
               </div>
@@ -50,7 +50,7 @@ const Navbar = () => {
             //  logged out user 
             <div className='flex items-center gap-2 sm:gap-5'>
               <Link href='/BuyCredit'><p className='cursor-pointer'>Pricing</p></Link>
-              <button className='bg-zinc-800 text-white py-2 sm:px-2 text-sm rounded-xl'>Login</button>
+              <Link href='/auth'><button className='bg-zinc-800 text-white py-2 sm:px-2 text-sm rounded-xl'>Login</button></Link>
             </div>
 
           }

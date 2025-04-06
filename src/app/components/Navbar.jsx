@@ -6,7 +6,10 @@ import { AppContext } from '../context/AppContext'
 
 const Navbar = () => {
 
-  const {user,setuser} = useContext(AppContext)
+  const {user,setuser,logout, Credit} = useContext(AppContext)
+  console.log("USER:", user)
+console.log("CREDIT:", Credit)
+
   return (
     <div className='flex justify-between items-center py-4'>
         <Link href="/"><Image
@@ -28,10 +31,10 @@ const Navbar = () => {
                     height={20}
                     alt="Logo of the Brand"
                 />
-                <p className='text-xs sm-text-sm font-medium text-gray-600'>Credit Left: 50</p>
+                <p className='text-xs sm-text-sm font-medium text-gray-600'>Credit Left: {Credit}</p>
               </button>
               </Link>
-              <p className='text-gray-600 max-sm:hidden pl-4'>Hi, Deb </p>
+              <p className='text-gray-600 max-sm:hidden pl-4'>Hi, {user.name} </p>
               <div className='relative group'>
                 <Image
                       src="/profile_icon.png"
@@ -41,7 +44,7 @@ const Navbar = () => {
                 />
                 <div className='absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded-xl pt-12'>
                   <ul className='list-none m-0 p-2 bg-white rounded-md border text-sm'>
-                    <li className='py-1 px-2 cursor-pointer pr-10' onClick={()=>setuser(false)}>Logout</li>
+                    <li className='py-1 px-2 cursor-pointer pr-10' onClick={logout}>Logout</li>
                   </ul>
                 </div>
               </div>

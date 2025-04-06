@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { assets, stepsData, testimonialsData } from "../../public/assets";
+import Link from "next/link";
 
 export default function page() {
   return (
@@ -16,13 +17,13 @@ export default function page() {
       <h1 className="text-4xl max-w-[300px] sm:text-7xl sm:mex-[700px] mx-auto mt-10 text-center">Words to <span className="text-blue-600">Crafts.</span></h1>
       <p className="text-center max-w-xl mx-auto mt-5">Unleash your creativity with AI. Turn your imagination into visiual art in seconds - just type, and watch the magic happen.</p>
 
-      <button className="sm:text-lg text-white bg-black w-auto mt-8 px-12 py-2.5 flex items-center gap-2 rounded-full">Generate Images
+      <Link href='/Result'><button className="sm:text-lg text-white bg-black w-auto mt-8 px-12 py-2.5 flex items-center gap-2 rounded-full">Generate Images
         <Image 
         src='/star_group.png'
         height={20}
         width={20}
         alt="Placeholder Image"/>
-      </button>
+      </button></Link>
 
       <div className="flex flex-wrap justify-center mt-16 gap-3">
         {Array(6).fill('').map((item, index)=>(
@@ -123,14 +124,14 @@ export default function page() {
 
       <div className="pb-16 text-center">
         <h1 className="text-2xl md:text-3xl lg:text-4xl mt-4 font-semibold text-neutral-800 py-6 md:py-16">See Our Magic. Try Now</h1>
-        <button className="inline-flex items-center gap-2 px-12 py-3 rounded-full bg-black text-white m-auto hover:scale-105 transition-all duration-500">Generate Images
+        <Link href='/Result'><button className="inline-flex items-center gap-2 px-12 py-3 rounded-full bg-black text-white m-auto hover:scale-105 transition-all duration-500">Generate Images
                 <Image  
                   src={assets.star_group}
                   height={20}
                   width={20}
                   alt="Placeholder Image"
                   className=""/>
-        </button>
+        </button></Link>
       </div>
 
 

@@ -1,19 +1,40 @@
 "use client"
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import { assets } from '../../../public/assets'
 import Image from 'next/image'
+import { AppContext } from '../context/AppContext'
 
 const page = () => {
 
+  
   const [image, setImage] = useState(assets.sample_img_1)
   const [isImageLoaded, setIsImageLoaded] = useState(false)
   const [Loading, setLoading] = useState(false)
   const [input, setinput] = useState('')
+  
+
+  const {generateImage} = useContext(AppContext)
+
   const onSubmitHandler = async(e)=>{
     console.log('hello world');
     e.preventDefault();
+    setLoading(true)
+    console.log('hello world 2');
+    
+    if(input){
+      console.log(input);
+      
+      const image = await generateImage(input)
+      console.log(image);
+      if(image){
+        setIsImageLoaded(true)
+        console.log(image);
+        
+        setImage(image)
+      }
+    }
+    setLoading(false)
   }
-
 
   return (
     <form className='flex flex-col min-h-[90vh] justify-center items-center ' onSubmit={onSubmitHandler}>

@@ -4,15 +4,15 @@ import { assets } from '../../../public/assets'
 import Image from "next/image";
 import axios from 'axios';
 import { AppContext } from '../context/AppContext';
-import { useRouter } from 'next/router';
-
+import { useRouter } from 'next/navigation';
+import {toast } from 'react-toastify';
 
 const page = () => {
   const [state, setstate] = useState('Login')
   const [name, setname] = useState('')
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
-  const {setShowLogin, backendUrl, setToken, setUser} = useContext(AppContext)
+  const {setShowLogin, backendUrl, settoken, setuser} = useContext(AppContext)
   const router = useRouter()
 
   const onSubmitHandler = async (e)=>{
@@ -22,14 +22,26 @@ const page = () => {
       if (state === 'Login') {
         const {data} = await axios.post(backendUrl + '/api/user/login',{email, password})
         if(data.success){
-          setToken(data.token)
-          setUser(data.user)
+          settoken(data.token)
+          setuser(data.user)
           localStorage.setItem('token', data.token)
           router.push('/Result')
+        }else{
+          toast.error(data.message)
+        }
+      }else{
+        const {data} = await axios.post(backendUrl + '/api/user/register',{name,email, password})
+        if(data.success){
+          settoken(data.token)
+          setuser(data.user)
+          localStorage.setItem('token', data.token)
+          router.push('/Result')
+        }else{
+          toast.error(data.message)
         }
       }
     } catch (error) {
-      
+      toast.error(error.message)
     }
   }
 
